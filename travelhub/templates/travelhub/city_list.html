@@ -1,0 +1,13 @@
+{% extends './base.html' %}
+{% block content %}
+    <h1>TravelHub</h1>
+    <p>旅行情報検索のハブとなるサイトを目指しています</p>
+    <p>都市のリスト</p>
+
+    {% for city in object_list %}
+        <img class=list-image src='{{ MEDIA_URL }}{{ city.cover_image}}' width=200>
+        <a href='{% url "travelhub:citydetail" city.slug %}'>{{ city.name }}</a>
+        <p> {{ city.updated_at }}</p>
+    {% endfor %}
+{% endblock %}
+    
