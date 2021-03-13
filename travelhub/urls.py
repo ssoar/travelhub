@@ -10,4 +10,5 @@ urlpatterns = [
     path('cities/', views.CitiesIndexView.as_view(), name='citiesindex'),
     path('countries/<slug:slug>', views.CountryDetailView.as_view(), name='countrydetail'),
     path('cities/<slug:slug>', views.CityDetailView.as_view(), name='citydetail'),
+    path('cities/<slug:slug>/comment', views.CommentCreate.as_view(), name='comment_create'),
 ]

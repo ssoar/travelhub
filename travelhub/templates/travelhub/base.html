@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <!-- Material Design for Bootstrap CSS -->
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <style></style>
         <title>TravelHub</title>
     </head>
@@ -43,10 +43,8 @@
                     </div>
                 </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline my-2 my-sm-0" type="submit" style="color: #ffffff; background-color: #ebd880;">Search</button>
-                </form>
+                {% block search %}
+                {% endblock %}
             </div>
         </nav>
 
@@ -57,7 +55,8 @@
 
         <footer class="footer">
             <div class="container">
-                <p class="text-muted">TravelHubについて</p>
+                <p class="text-footer">TravelHubについて</p>
+                <a class="text-footer" href="#">お問い合わせ</a>
             </div>
         </footer>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

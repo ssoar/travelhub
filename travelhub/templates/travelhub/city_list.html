@@ -1,13 +1,59 @@
 {% extends './base.html' %}
+{% load peginate %}
+
+{% block search %}
+<form class="form-inline my-2 my-lg-0"　id="search-form" action="" method="GET">
+    {{ search_form.key_word }}
+    <button class="btn btn-outline my-2 my-sm-0" type="submit" style="color: #ffffff; background-color: #ebd880;">Search</button>
+</form>
+{% endblock %}
+
 {% block content %}
     <h1>TravelHub</h1>
     <p>旅行情報検索のハブとなるサイトを目指しています</p>
     <p>都市のリスト</p>
-
+    <div class="row">
     {% for city in object_list %}
-        <img class=list-image src='{{ MEDIA_URL }}{{ city.cover_image}}' width=200>
-        <a href='{% url "travelhub:citydetail" city.slug %}'>{{ city.name }}</a>
-        <p> {{ city.updated_at }}</p>
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card card-list">
+                <div class="card card-list">
+                    <div class="card-img" style="background-image:url({{ MEDIA_URL }}{{ city.cover_image}});"></div>    
+                    <a class="card-img-overlay d-flex flex-column justify-content-between" href='{% url "travelhub:citydetail" city.slug %}'>
+                        <h4 class="card-title">{{ city.name }}</h4>
+                        <p class="card-text oswald">{{ city.published_at }}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+    </div>
+    <ul class="pagination">
+        <!-- 前へ の部分 -->
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    
+        <!-- 数字の部分 -->
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+    
+        <!-- 次へ の部分 -->
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
 {% endblock %}
     

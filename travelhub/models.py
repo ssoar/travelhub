@@ -151,3 +151,46 @@ class Asset(models.Model):
 
     def __str__(self):
         return self.title
+
+class Place(models.Model):
+    country = models.ForeignKey(Country, on_delete=models.PROTECT, blank=True, null=True)
+    city = models.ForeignKey(City, on_delete=models.PROTECT, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    tags = models.ManyToManyField(Tag, blank=True)
+    slug = models.SlugField(unique=True, null=True)
+    name = models.CharField(max_length=50)
+    access = models.CharField(max_length=255)
+    adress = models.CharField(max_length=255, null=True)
+    fee = models.CharField(max_length=255)
+    opening_hours = models.CharField(max_length=255)
+    link = models.CharField(max_length=255)
+    info = models.TextField()
+    image = models.ImageField(upload_to='place_images/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.name
+
+class Comment(models.Model):
+    """記事に紐づくコメント"""
+    name = models.CharField('名前', max_length=255, default='名無し')
+    text = models.TextField('本文')
+    target = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='対象記事')
+    created_at = models.DateTimeField('作成日', default=timezone.now)
+
+    def __str__(self):
+        return self.text[:20]
+
+class Reply(models.Model):
+    """コメントに紐づく返信"""
+    name = models.CharField('名前', max_length=255, default='名無し')
+    text = models.TextField('本文')
+    target = models.ForeignKey(Comment, on_delete=models.CASCADE, verbose_name='対象コメント')
+    created_at = models.DateTimeField('作成日', default=timezone.now)
+
+    def __str__(self):
+        return self.text[:20]
