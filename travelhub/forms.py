@@ -13,15 +13,3 @@ class PostSearchForm(forms.Form):
         required=False,
         queryset=Tag.objects.order_by('name'),
     )
-
-class CommentCreateForm(forms.ModelForm):
-    """コメント投稿フォーム"""
-
-    class Meta:
-        model = Comment
-        exclude = ('target', 'created_at')
-        widgets = {
-            'text': forms.Textarea(
-                attrs={'placeholder': 'マークダウンに対応しています。\n\n```python\nprint("コードはこのような感じで書く")\n```\n\n[リンクテキスト](https://narito.ninja/)\n\n![画像alt](画像URL)'}
-            )
-        }

@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from .models import Country, City, Category, Tag, Place, Comment, Reply
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PostSearchForm, CommentCreateForm
+from .forms import PostSearchForm
 from django.db.models import Q
 
 
@@ -116,28 +116,3 @@ class Home(generic.ListView):
         context['tag_list'] = Tag.objects.all()
         context['search_form'] = PostSearchForm(self.request.GET or None)
         return context
-
-class CommentCreate(generic.CreateView):
-    """記事へのコメント作成ビュー。"""
-    model = Comment
-    form_class = CommentCreateForm
-
-    def form_valid(self, form):
-        city_pk = self.kwargs['pk']
-        city = get_object_or_404(City, pk=city_pk)
-        comment = form.save(commit=False)
-        comment.target = city
-        comment.save()
-        return redirect('travelhub:citydetail', pk=city_pk)
-
-        def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context['city'] = get_object_or_404(City, pk=self.kwargs['pk'])
-            return context
-
-
-"""
-class TagListView(ListView):
-    queryset = Tag.objects.annotate(num_posts=Count(
-        'post', filter=Q(post__is_public=True)))
-"""
