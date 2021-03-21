@@ -25,7 +25,7 @@ SECRET_KEY = 'y!8rv9fkq8&!(@w6d4=jbk79v72ic1v--jx8_zaklqt%l1nna&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'travelmap.wsgi.application'
 
 DATABASES = {
     'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'travelmapdb',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
-        'PORT': '8889',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'travelmapdb',
+#        'USER': 'root',
+#        'PASSWORD': 'root',
+#        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
+#        'PORT': '8889',
     }
 }
 
