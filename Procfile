@@ -1,1 +1,1 @@
-web: gunicorn travelmaphub.wsgi
+web: gunicorn travelhub.wsgi
