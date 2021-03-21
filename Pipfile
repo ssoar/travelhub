@@ -15,6 +15,7 @@ pymysql = "*"
 django-heroku = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.8"
