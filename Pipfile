@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 django-heroku = "*"
+django-cloudinary-storage = "*"
+pillow = "*"
 
 [dev-packages]
 django = "*"
