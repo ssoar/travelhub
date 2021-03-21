@@ -1,1 +1,1 @@
-web: gunicorn travelmaphub.wsgi:application -b 0.0.0.0:$PORT
+web: gunicorn travelmaphub.wsgi
