@@ -1,1 +1,1 @@
-web: gunicorn pfinyg.wsgi
+web: gunicorn travelmaphub.wsgi:application -b 0.0.0.0:$PORT
