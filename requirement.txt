@@ -1,0 +1,7 @@
+django = "*"
+pillow = "*"
+mysql = "*"
+pymysql = "*"
+django-heroku = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
